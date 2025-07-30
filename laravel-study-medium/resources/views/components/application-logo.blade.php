@@ -1,0 +1,1 @@
+<img src="/build/assets/logo.svg" class="w-40" alt="">
