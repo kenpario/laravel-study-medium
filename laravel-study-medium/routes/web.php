@@ -12,6 +12,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/', [PostCOntroller::class, 'index'])->name('dashboard');
     Route::get('/post/create', [PostCOntroller::class, 'create'])->name('post.create');
     Route::post('/post/create', [PostCOntroller::class,'store'])->name('post.store');
+    Route::get('/@{username}/{post:slug}',[PostCOntroller::class,'show'])->name('post.show');
 });
 
 Route::middleware('auth')->group(function () {
