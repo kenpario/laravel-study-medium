@@ -8,7 +8,11 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/', [PostCOntroller::class, 'index'])->middleware(['auth', 'verified'])->name('dashboard');
+Route::middleware(['auth', 'verified'])->group(function () {
+    Route::get('/', [PostCOntroller::class, 'index'])->name('dashboard');
+    Route::get('/post/create', [PostCOntroller::class, 'create'])->name('post.create');
+    Route::post('/post/create', [PostCOntroller::class,'store'])->name('post.store');
+});
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
@@ -16,4 +20,4 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';
