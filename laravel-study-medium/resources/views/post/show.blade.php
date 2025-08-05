@@ -8,34 +8,50 @@
                             class="mb-4 text-2xl font-extrabold leading-none tracking-tight text-gray-900 md:text-5xl lg:text-6xl dark:text-white">
                             {{ $post->title }}
                         </h1>
+                        <!-- Avatar -->
                         <div class="flex gap-4">
-                            @if($post->user->image)
-                                <div>
-                                    <img class="rounded-full w-20 h-20" src="{{ Storage::url($post->user->image) }}"
-                                        alt="{{ $post->user->name }}">
-                                </div>
-                            @else
-                                <div>
-                                    <img class="rounded-full w-20 h-20"
-                                        src="https://static.everypixel.com/ep-pixabay/0329/8099/0858/84037/3298099085884037069-head.png"
-                                        alt="{{ $post->user->name }}">
-                                </div>
-                            @endif
-                            <div class="gap-2">
-                                <h3>{{$post->user->name}}</h3>
-                                <span class="text-gray-400">
-                                    {{ ceil(str_word_count(strip_tags($post->content)) / 200) }} min read
-
+                            <x-user-avatar :user="$post->user" size="w-20 h-20"/>
+                            <!-- Avatar -->
+                            <!-- User -->
+                            <div>
+                                <x-follow-container :user="$post->user" class="flex gap-2">
+                                    <a class="hover:text-gray-400 hover:underline"
+                                        href="{{ route('profile.show', $post->user) }}">{{ $post->user->name }}</a>
                                     &middot;
+                                    <button x-text="following ? 'Unfollow' : 'Follow'" :class="following ? 'text-red-500 hover:text-red-700' : 'text-emerald-500 hover:text-emerald-700'" @click="follow()"></button>
+                                </x-follow-container>
+                                <div class="flex gap-2">
+                                    <span class="text-gray-400">
+                                        {{ ceil(str_word_count(strip_tags($post->content)) / 200) }} min read
 
-                                    {{$post->created_at->format('M d,Y')}}
-                                </span>
+                                        &middot;
+
+                                        {{$post->created_at->format('M d,Y')}}
+                                    </span>
+                                </div>
                             </div>
+                            <!-- User -->
                         </div>
                     </div>
-                    <div class="flex m-10">
-                        <p>{{$post->content}}</p>
+                    <!-- Content -->
+                    <!-- Like -->
+                    <x-like-button />
+                    <!-- Like-->
+                    <div>
+                        <img src="{{ Storage::url($post->image) }}" class="w-full mt-10">
+                        <div class="flex m-10">
+                            {{$post->content}}
+                        </div>
                     </div>
+                    <!-- Category -->
+                    <div>
+                        <a href="#"><span class="p-2 bg-gray-500 rounded-full">{{ $post->category->name }}</span></a>
+                    </div>
+                    <!-- Category -->
+                    <!-- Like -->
+                    <x-like-button />
+                    <!-- Like-->
+                    <!-- Content -->
                 </div>
             </div>
         </div>
