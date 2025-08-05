@@ -1,5 +1,5 @@
 @props(['post'])
-
+@auth
 <div x-data="{
 hasLiked: {{ auth()->user()->hasLiked($post) ? 'true' : 'false' }},
 count: {{ $post->likes()->count() }},
@@ -13,7 +13,7 @@ async like() {
 }
 }" class="mt-10 p-4 border-t border-b border-gray-500">
 
-    <button class=" flex gap-2 text-gray-400 hover:text-white" @click="like()">
+    <button class=" flex gap-2 text-gray-400 dark:hover:text-white hover:text-black" @click="like()">
         <template x-if="!hasLiked">
         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
             class="size-6">
@@ -30,3 +30,4 @@ async like() {
         <span x-text="count"></span>
     </button>
 </div>
+@endauth

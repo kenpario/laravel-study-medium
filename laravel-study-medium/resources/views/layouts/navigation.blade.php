@@ -16,8 +16,6 @@
                         Create Post
                     </x-primary-button>
                 </a>
-
-
                 <!-- Settings Dropdown -->
                 <div class="hidden sm:flex sm:items-center sm:ms-6">
                     <x-dropdown align="right" width="48">
@@ -63,11 +61,11 @@
             @guest
                 <div class="flex gap-2 h-8 mt-4">
                     <a href="{{ route('register') }}"
-                        class="inline-flex items-center px-4 py-2 text-white hover:text-gray-300">
+                        class="inline-flex items-center px-4 py-2 dark:text-white dark:hover:text-gray-300 text-black hover:text-gray-500">
                         Create Account
                     </a>
                     <a href="{{ route('login') }}"
-                        class="inline-flex items-center px-4 py-2 text-white hover:text-gray-300">
+                        class="inline-flex items-center px-4 py-2 dark:text-white dark:hover:text-gray-300 text-black hover:text-gray-500">
                         Login
                     </a>
                 </div>

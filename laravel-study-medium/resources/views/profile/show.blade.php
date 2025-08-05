@@ -4,7 +4,7 @@
             <div class="p-4 sm:p-8 bg-white dark:bg-gray-800 shadow sm:rounded-lg">
                 <div class="flex">
                     <div class="flex-1">
-                        <h1 class="text-4xl border-b border-gray-500 p-2">{{$user->name}}</h1>
+                        <h1 class="text-4xl border-b border-gray-500 p-2 dark:text-white text-black">{{$user->name}}</h1>
                         <div class="m-5">
                             @forelse ($posts as $post)
                                 <x-post-item :post="$post" />
@@ -16,7 +16,7 @@
                     <x-follow-container :user='$user'>
                         <x-user-avatar :user="$user" size="w-25 h-25" />
                         <div class="m-5 px-10">
-                            <h3 class="font-bold text-xl">{{ $user->name }}</h3>
+                            <h3 class="font-bold text-xl dark:text-white text-black">{{ $user->name }}</h3>
                             <p class="text-gray-400"><span x-text="followersCount"></span> followers</p>
                             <p>{{$user->bio}}</p>
                             @if(auth()->user() && auth()->user()->id !== $user->id)
