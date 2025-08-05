@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\FollowerController;
+use App\Http\Controllers\LikeController;
 use App\Http\Controllers\PostCOntroller;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\PublicProfileController;
@@ -18,6 +19,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::post('/post/create', [PostCOntroller::class, 'store'])->name('post.store');
     Route::get('/@{username}/{post:slug}', [PostCOntroller::class, 'show'])->name('post.show');
     Route::post('/follow/{user}', [FollowerController::class, 'followUnfollow'])->name('follow');
+    Route::post('/clap/{post}', [LikeController::class, 'likeUnlike'])->name('like');
 });
 
 Route::middleware('auth')->group(function () {

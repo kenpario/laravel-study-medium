@@ -35,7 +35,7 @@
                     </div>
                     <!-- Content -->
                     <!-- Like -->
-                    <x-like-button />
+                    <x-like-button :post='$post'/>
                     <!-- Like-->
                     <div>
                         <img src="{{ Storage::url($post->image) }}" class="w-full mt-10">
@@ -49,7 +49,7 @@
                     </div>
                     <!-- Category -->
                     <!-- Like -->
-                    <x-like-button />
+                    <x-like-button :post='$post'/>
                     <!-- Like-->
                     <!-- Content -->
                 </div>
